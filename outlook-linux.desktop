@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Outlook Linux
+Comment=Microsoft Outlook Web App for Linux
+Exec=/home/lefka/Outlook-Linux/outlook_app.py
+Icon=/home/lefka/Outlook-Linux/outlook.png
+Terminal=false
+Categories=Network;Email;Office;
+MimeType=x-scheme-handler/mailto;
+StartupWMClass=Outlook

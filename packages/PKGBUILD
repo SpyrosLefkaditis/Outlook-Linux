@@ -1,0 +1,38 @@
+# Maintainer: Spyros Lefkaditis <spyros.lefkaditis@example.com>
+pkgname=outlook-linux
+pkgver=2.0
+pkgrel=1
+pkgdesc="Microsoft Outlook Web App for Linux"
+arch=('any')
+url="https://github.com/SpyrosLefkaditis/Outlook-Linux"
+license=('MIT')
+depends=('python' 'chromium')
+optdepends=('google-chrome: Alternative browser engine')
+source=()
+sha256sums=()
+
+package() {
+    # Create directories
+    install -dm755 "$pkgdir/usr/local/bin"
+    install -dm755 "$pkgdir/usr/share/applications"
+    install -dm755 "$pkgdir/usr/share/pixmaps"
+    
+    # Install application
+    install -Dm755 "/home/lefka/Outlook-Linux/outlook_app.py" "$pkgdir/usr/local/bin/outlook-linux"
+    install -Dm644 "/home/lefka/Outlook-Linux/outlook.png" "$pkgdir/usr/share/pixmaps/outlook-linux.png"
+    
+    # Install desktop file
+    cat > "$pkgdir/usr/share/applications/outlook-linux.desktop" << 'DESKTOP_EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Outlook Linux
+Comment=Microsoft Outlook Web App for Linux
+Exec=/usr/local/bin/outlook-linux
+Icon=/usr/share/pixmaps/outlook-linux.png
+Terminal=false
+Categories=Network;Email;Office;
+MimeType=x-scheme-handler/mailto;
+StartupWMClass=Outlook
+DESKTOP_EOF
+}
