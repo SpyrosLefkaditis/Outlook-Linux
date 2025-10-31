@@ -6,49 +6,54 @@
 ## What's New in v2.0
 
 - ✅ **Proper Application Branding**: No more Chrome window icon - appears as native Outlook app
-- ✅ **Multi-Distribution Support**: Packages for Debian/Ubuntu, Arch Linux, and AppImage
-- ✅ **Isolated Chrome Profile**: Dedicated Chrome profile for better performance
+- ✅ **Multi-Distribution Support**: Packages for Debian/Ubuntu and universal AppImage
+- ✅ **Isolated Chrome Profile**: Dedicated Chrome profile for better performance and isolation
 - ✅ **Enhanced Window Management**: Better integration with Linux desktop environments
-- ✅ **Universal Installer**: Automatic detection and installation for different distributions
 
 ## Package Contents
 
 ### For Debian/Ubuntu (.deb)
-- **File:** `outlook-linux_2.0_all.deb`
+- **File:** `outlook-linux_2.0_all.deb` (85KB)
 - **Installation:** `sudo dpkg -i outlook-linux_2.0_all.deb`
 - **Dependencies:** python3, chromium-browser | google-chrome-stable
+- **Features:** System integration, desktop shortcut, separate window class
 
-### For Arch Linux (.pkg.tar.xz)
-- **File:** `outlook-linux-2.0-1-any.pkg.tar.xz`
-- **Installation:** `sudo pacman -U outlook-linux-2.0-1-any.pkg.tar.xz`
-- **Dependencies:** python, chromium
-
-### AppImage (Universal)
-- **File:** `OutlookLinux-2.0-x86_64.AppImage`
-- **Installation:** Make executable and run
-- **No dependencies required** (portable)
+### AppImage (Universal) - RECOMMENDED
+- **File:** `OutlookLinux-2.0-x86_64.AppImage` (218KB)
+- **Installation:** `chmod +x OutlookLinux-2.0-x86_64.AppImage && ./OutlookLinux-2.0-x86_64.AppImage`
+- **No dependencies required** (completely portable)
+- **Features:** Separate window class, isolated profile
 
 ## Installation Instructions
 
-### Quick Install (Recommended)
-1. Download the release package
-2. Run the universal installer:
+### AppImage (Recommended - Universal)
+1. Download `OutlookLinux-2.0-x86_64.AppImage`
+2. Make executable and run:
+   ```bash
+   chmod +x OutlookLinux-2.0-x86_64.AppImage
+   ./OutlookLinux-2.0-x86_64.AppImage
+   ```
+
+### Debian/Ubuntu (.deb package)
+1. Download `outlook-linux_2.0_all.deb`
+2. Install with dpkg:
+   ```bash
+   sudo dpkg -i outlook-linux_2.0_all.deb
+   ```
+3. Or use the installer script:
    ```bash
    chmod +x install-outlook-linux.sh
    ./install-outlook-linux.sh
    ```
 
-### Manual Installation
-Choose the appropriate package for your distribution and follow the installation commands above.
-
 ## Features
 
-- 🎯 Native Outlook application appearance
-- 🖼️ Custom Outlook icon in taskbar and launcher
-- 🔧 Isolated Chrome profile
-- 📧 Mailto link support
-- 🚀 Fast startup and performance
-- 🐧 Works on all major Linux distributions
+- 🎯 **Native Outlook Appearance**: Shows as separate Outlook app, not Chrome
+- 🖼️ **Custom Outlook Icon**: Proper Outlook branding in taskbar and launcher
+- 🔧 **Isolated Chrome Profile**: Dedicated profile prevents conflicts with main browser
+- 📧 **Mailto Link Support**: Handle email links system-wide
+- 🚀 **Fast Performance**: Optimized startup and resource usage
+- 🐧 **Universal Compatibility**: Works on all major Linux distributions
 
 ## System Requirements
 

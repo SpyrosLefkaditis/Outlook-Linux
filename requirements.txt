@@ -1,0 +1,26 @@
+# Outlook Linux Requirements
+# Author: Spyros Lefkaditis
+
+# Core Python requirements (built-in modules used)
+# - subprocess (built-in)
+# - pathlib (built-in) 
+# - webbrowser (built-in)
+# - os (built-in)
+
+# System requirements:
+# - Python 3.x
+# - Chrome/Chromium browser:
+#   - google-chrome-stable
+#   - chromium-browser 
+#   - chromium
+
+# For Debian/Ubuntu:
+# sudo apt install python3 chromium-browser
+
+# For Fedora/CentOS:
+# sudo dnf install python3 chromium
+
+# For Arch Linux:
+# sudo pacman -S python chromium
+
+# No additional Python packages required - uses only standard library

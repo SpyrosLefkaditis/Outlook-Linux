@@ -3,42 +3,52 @@
 A simple Linux app wrapper for Microsoft Outlook Web.  
 Opens Outlook in a clean, native-like window using Chrome/Chromium app mode with proper Outlook branding and icon.
 
-**Features:**
-- 🎯 Appears as a separate Outlook application (not Chrome)
-- 🖼️ Custom Outlook icon in taskbar and application launcher
-- 🔧 Isolated Chrome profile for better performance
-- 📦 Pre-built `.deb` package for easy installation
-- 🚀 Works with Chrome, Chromium, or Chromium-browser
+**Author:** Spyros Lefkaditis  
+**Version:** 2.0
+
+## Features
+
+- 🎯 **Native Outlook Appearance**: Shows as separate Outlook app, not Chrome
+- 🖼️ **Custom Outlook Icon**: Proper Outlook branding in taskbar and launcher  
+- 🔧 **Isolated Chrome Profile**: Dedicated profile prevents conflicts with main browser
+- � **Mailto Link Support**: Handle email links system-wide
+- 🚀 **Fast Performance**: Optimized startup and resource usage
+- 🐧 **Universal Compatibility**: Works on all major Linux distributions
 
 ---
 
-## Installation Options
+## Installation
 
-### Option 1: Pre-built Package (Recommended)
+### AppImage (Recommended - Universal)
 
-1. Go to the [Releases page](https://github.com/SpyrosLefkaditis/Outlook-Linux/releases/tag/v1.0) and download the latest `outlook-app.deb`.
-
-2. Open a terminal in the folder where you downloaded the file and run:
-
-```bash
-sudo dpkg -i outlook-app.deb
-```
-
-### Option 2: Source Installation
-
-1. Clone or download this repository
-2. Run the installer script:
+1. Download `OutlookLinux-2.0-x86_64.AppImage` from the [releases page](https://github.com/SpyrosLefkaditis/Outlook-Linux/releases)
+2. Make executable and run:
 
 ```bash
-cd Outlook-Linux
-./install.sh
+chmod +x OutlookLinux-2.0-x86_64.AppImage
+./OutlookLinux-2.0-x86_64.AppImage
 ```
 
-This will:
-- Set up the application with proper permissions
-- Create a desktop entry with Outlook icon
-- Add the app to your application menu
-- Install to your user directory (~/.local)
+**Benefits:**
+- ✅ Works on any Linux distribution
+- ✅ No installation required (portable)
+- ✅ No dependencies needed
+- ✅ Separate window class for proper branding
+
+### Debian/Ubuntu Package
+
+1. Download `outlook-linux_2.0_all.deb` from the [releases page](https://github.com/SpyrosLefkaditis/Outlook-Linux/releases)
+2. Install with dpkg:
+
+```bash
+sudo dpkg -i outlook-linux_2.0_all.deb
+sudo apt-get install -f  # Fix dependencies if needed
+```
+
+**Benefits:**
+- ✅ System integration
+- ✅ Desktop shortcut automatically created
+- ✅ Appears in application menu
 
 ---
 
@@ -54,58 +64,98 @@ The application will appear with the Outlook icon and behave like a native Linux
 
 ---
 
-## Files
+## Requirements
 
-### Application Files
+**System Requirements:**
+- Python 3.x
+- Chrome, Chromium, or Chromium-browser
+- Internet connection
+
+**No additional Python packages required** - uses only standard library modules.
+
+See `requirements.txt` for detailed system requirements and installation commands for different Linux distributions.
+
+## Project Structure
+
+### Core Files
 - `outlook_app.py` - Main application script
-- `outlook.png` - Outlook icon file
-- `install.sh` - User installation script
+- `outlook.png` - Main Outlook icon (590x590)
 - `outlook-linux.desktop` - Desktop entry file
+- `requirements.txt` - System requirements and dependencies
+- `README.md` - This documentation
+
+### Multi-Resolution Icons
+- `outlook-24.png`, `outlook-32.png`, `outlook-48.png`, `outlook-256.png` - Various sizes for different display contexts
 
 ### Distribution Packages
-- `packages/` - Ready-to-install packages for different distributions:
-  - `outlook-linux_2.0_all.deb` - Debian/Ubuntu package
-  - `OutlookLinux-2.0-x86_64.AppImage` - Universal AppImage
-  - `PKGBUILD` - Arch Linux package build file
-  - `install-outlook-linux.sh` - Universal installer script
+- `packages/outlook-linux_2.0_all.deb` - Debian/Ubuntu package (85KB)
+- `packages/OutlookLinux-2.0-x86_64.AppImage` - Universal Linux package (218KB)
+- `packages/RELEASE_NOTES.md` - Version 2.0 release documentation
 
 ---
 
-## Available Packages
+## Development
 
-The `packages/` directory contains ready-to-install packages for different Linux distributions:
+### Building from Source
 
-### 📦 **Debian/Ubuntu Package**
+1. Clone the repository:
 ```bash
-sudo dpkg -i packages/outlook-linux_2.0_all.deb
-sudo apt-get install -f  # Fix dependencies if needed
+git clone https://github.com/SpyrosLefkaditis/Outlook-Linux.git
+cd Outlook-Linux
 ```
 
-### 🖼️ **AppImage (Universal)**
+2. Run directly:
 ```bash
-chmod +x packages/OutlookLinux-2.0-x86_64.AppImage
-./packages/OutlookLinux-2.0-x86_64.AppImage
+python3 outlook_app.py
 ```
 
-### 🏗️ **Arch Linux**
+3. Create desktop integration:
 ```bash
-# Copy PKGBUILD to a build directory and run:
-makepkg -si
+# Copy desktop file to applications directory
+cp outlook-linux.desktop ~/.local/share/applications/
+# Update paths in the desktop file to match your installation location
 ```
 
-### 🔧 **Universal Installer**
-```bash
-chmod +x packages/install-outlook-linux.sh
-./packages/install-outlook-linux.sh
-```
-*Auto-detects your Linux distribution and installs the appropriate package*
+### Technical Details
+
+- **Window Class**: Uses `--class=Outlook` for .deb package, `--class=OutlookAppImage` for AppImage
+- **Profile Isolation**: Separate Chrome profiles prevent conflicts with main browser
+- **Icon Resolution**: Multiple icon sizes ensure crisp display at different scales
+- **Cross-Platform**: Works on major Linux distributions (Ubuntu, Debian, Fedora, Arch, etc.)
 
 ---
 
 ## Troubleshooting
 
-**Chrome/Chromium not found**: The app will automatically detect Chrome, Chromium, or Chromium-browser. If none are installed, it will fall back to your default browser.
+**Chrome/Chromium not found**: The app automatically detects Chrome, Chromium, or Chromium-browser. If none are installed, install one:
+```bash
+# Ubuntu/Debian
+sudo apt install chromium-browser
+# Fedora
+sudo dnf install chromium
+# Arch Linux  
+sudo pacman -S chromium
+```
 
-**Icon not showing**: Make sure the `outlook.png` file is in the same directory as the script and run `./install.sh` again.
+**Window still shows Chrome icon**: 
+- For .deb package: Try logging out and back in
+- For AppImage: Make sure you're running the latest version with separate window class
 
-**Window still shows Chrome icon**: Try logging out and back in, or restart your desktop environment for the window manager to recognize the new application class.
+**AppImage won't run**: Make sure it has execute permissions:
+```bash
+chmod +x OutlookLinux-2.0-x86_64.AppImage
+```
+
+**Package installation issues**: 
+- For .deb: Run `sudo apt-get install -f` after dpkg to fix dependencies
+- Check that Python 3 is installed: `python3 --version`
+
+## Support
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/SpyrosLefkaditis/Outlook-Linux/issues)
+- **Author**: Spyros Lefkaditis
+- **Email**: info@spyroslefkaditis.com
+
+---
+
+**Developed with ❤️ for the Linux community**
